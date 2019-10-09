@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <style>
+        body { 
+            background: #306080; background: linear-gradient(135deg, #3070A0, #304870);
+            color: #333;
+            font-family: monospace; 
+            font-size: 14px;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            width: 100vw;
+        }
+
+        .main-content {
+            display: flex; align-items: center; flex-direction: column;
+            overflow-y: scroll;
+            height: 100%;
+            width: 100%;
+        }
+
+        .main-content > div {
+            margin: 20px 0;
+            width: 90%; max-width: 1000px;
+        }
+
+        .panel {
+            background: #FFF;
+            border: 1px solid #ddd;
+            box-shadow: 4px 4px 8px #0003;
+            height: fit-content;
+            margin: 15px 0;
+            padding: 5px 30px 20px;
+            width: 100%;
+        }
+
+        .panel > *:first-child {
+            font-size: 18px; 
+            font-weight: 600;
+        }
+
+        textarea {
+            resize: none;
+            width: 100%
+        }
+
+        ul {
+            margin-top: 5px;
+        }
+    
+    </style>
+
+</head>
+
+<body>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <section class="main-content">
+        
+        {% for publicacao in publicacoes %}
+        <div>
+            <div class="panel">
+
+                <p>CONTEÚDO #{{ forloop.counter }}:</p>
+                <p>{{ publicacao.conteudo|linebreaks  }}</p>
+
+            </div>
+            
+            <div class="panel">
+                
+                <p>METADADOS:</p>
+
+                {% for key, list in publicacao.metadados.items %}
+
+                    <span>{{ key }}:</span>
+                    
+                    <ul>
+                    {% for value in list %}
+                        <li>{{ value }}</li>
+                    {% endfor %}
+                    </ul>
+
+                {% endfor %}
+
+            </div>
+        </div>
+        {% endfor %}
+
+    </section>
+
+</body>
+
+</html>
